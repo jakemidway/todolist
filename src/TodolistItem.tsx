@@ -1,13 +1,36 @@
-import {Task} from "./App.tsx";
 import {Button} from "./Button.tsx";
 
-type Props = {
+type PropsType = {
     title: string,
-    tasks: Task[],
+    tasks: TaskType[],
     date?: string
 }
 
-export const TodolistItem = ({title, tasks, date}: Props) => {
+export type TaskType = {
+    id: number,
+    title: string,
+    isDone: boolean
+}
+
+export const TodolistItem = ({title, tasks, date}: PropsType) => {
+    // const title = props.title
+    // const tasks = props.tasks
+
+    // const {title: title, tasks: tasks} = props
+
+    // const {title, tasks} = props
+
+    const taskItems = tasks.map(task => {
+            console.log(task)
+            return (
+                <li key={task.id}>
+                    <input type="checkbox" checked={task.isDone}/>
+                    <span>{task.title}</span>
+                </li>
+            )
+        })
+
+
     return (
         <div>
             <h3>{title}</h3>
@@ -19,14 +42,7 @@ export const TodolistItem = ({title, tasks, date}: Props) => {
                 <p>No tasks were found.</p>
             ) : (
                 <ul>
-                    {tasks.map(task => {
-                        return (
-                            <li key={task.id}>
-                                <input type="checkbox" checked={task.isDone}/>
-                                <span>{task.title}</span>
-                            </li>
-                        )
-                    })}
+                    {taskItems}
                 </ul>
             )}
             <div>
