@@ -1,7 +1,7 @@
 import {Button} from "./Button.tsx";
 import {FilterValues, Task} from "./App.tsx";
 
-type PropsType = {
+type Props = {
     title: string,
     tasks: Task[],
     deleteTask: (taskId: number) => void,
@@ -9,7 +9,7 @@ type PropsType = {
     date?: string
 }
 
-export const TodolistItem = ({title, tasks, date, deleteTask, changeFilter}: PropsType) => {
+export const TodolistItem = ({title, tasks, date, deleteTask, changeFilter}: Props) => {
     const taskItems = tasks.map(task => {
             return (
                 <li key={task.id}>
